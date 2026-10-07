@@ -1,1 +1,1348 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Data Tool | Turn Data Into Intelligence</title>
+
+    <meta
+        name="description"
+        content="AI Data Tool is an open-source developer platform for transforming raw data into intelligent, actionable workflows."
+    />
+
+    <meta name="theme-color" content="#050505">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #050505;
+            --surface: #0b0b0d;
+            --surface-2: #111114;
+            --border: rgba(255,255,255,0.09);
+            --text: #f5f5f5;
+            --muted: #9a9aa3;
+            --accent: #8b5cf6;
+            --accent-2: #22d3ee;
+            --green: #34d399;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                Inter,
+                ui-sans-serif,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1120px, calc(100% - 40px));
+            margin: auto;
+        }
+
+        /* ---------------- NAVIGATION ---------------- */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            background: rgba(5,5,5,0.72);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .nav-inner {
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .logo-mark {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--accent),
+                    var(--accent-2)
+                );
+
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 16px;
+            box-shadow:
+                0 0 30px rgba(139,92,246,0.35);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-cta {
+            padding: 9px 15px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 13px;
+            transition: 0.25s;
+        }
+
+        .nav-cta:hover {
+            background: white;
+            color: black;
+        }
+
+        /* ---------------- HERO ---------------- */
+
+        .hero {
+            min-height: 100vh;
+            padding-top: 160px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(139,92,246,0.18),
+                    transparent 65%
+                );
+
+            top: -250px;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 12px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.025);
+            border-radius: 999px;
+            font-size: 12px;
+            color: #c7c7cf;
+            margin-bottom: 28px;
+        }
+
+        .pulse {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 12px var(--green);
+        }
+
+        h1 {
+            font-size: clamp(48px, 8vw, 88px);
+            line-height: 0.98;
+            letter-spacing: -5px;
+            font-weight: 750;
+            margin-bottom: 28px;
+        }
+
+        .gradient-text {
+            background:
+                linear-gradient(
+                    100deg,
+                    #ffffff 0%,
+                    #b8a1ff 45%,
+                    #67e8f9 100%
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-description {
+            max-width: 650px;
+            margin: auto;
+            font-size: 19px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 13px 20px;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.25s;
+            border: 1px solid var(--border);
+        }
+
+        .btn-primary {
+            background: white;
+            color: black;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(255,255,255,0.15);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.035);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.08);
+        }
+
+        /* ---------------- PRODUCT VISUAL ---------------- */
+
+        .product-window {
+            margin-top: 80px;
+            position: relative;
+            border: 1px solid var(--border);
+            background: rgba(12,12,15,0.92);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow:
+                0 40px 120px rgba(0,0,0,0.65),
+                0 0 80px rgba(139,92,246,0.08);
+        }
+
+        .window-top {
+            height: 45px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            gap: 7px;
+        }
+
+        .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #333;
+        }
+
+        .window-title {
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 11px;
+            color: #666;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            min-height: 380px;
+        }
+
+        .sidebar {
+            border-right: 1px solid var(--border);
+            padding: 20px;
+            text-align: left;
+        }
+
+        .side-label {
+            font-size: 10px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .side-item {
+            padding: 9px 10px;
+            border-radius: 7px;
+            font-size: 12px;
+            color: #85858d;
+            margin-bottom: 4px;
+        }
+
+        .side-item.active {
+            background: rgba(139,92,246,0.12);
+            color: #c8baff;
+        }
+
+        .dashboard-main {
+            padding: 25px;
+            text-align: left;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .dashboard-header h3 {
+            font-size: 15px;
+        }
+
+        .status {
+            font-size: 10px;
+            color: var(--green);
+            background: rgba(52,211,153,0.08);
+            border: 1px solid rgba(52,211,153,0.15);
+            padding: 5px 9px;
+            border-radius: 999px;
+        }
+
+        .workflow {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .workflow-card {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px;
+        }
+
+        .workflow-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            background: rgba(139,92,246,0.13);
+            color: #b7a4ff;
+            font-size: 13px;
+            margin-bottom: 14px;
+        }
+
+        .workflow-card h4 {
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .workflow-card p {
+            color: #707078;
+            font-size: 10px;
+        }
+
+        .data-bar {
+            margin-top: 20px;
+            height: 90px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .bar-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #777;
+            margin-bottom: 12px;
+        }
+
+        .bars {
+            display: flex;
+            align-items: end;
+            gap: 5px;
+            height: 38px;
+        }
+
+        .bar {
+            flex: 1;
+            background: linear-gradient(
+                to top,
+                rgba(139,92,246,0.8),
+                rgba(34,211,238,0.8)
+            );
+            border-radius: 3px 3px 0 0;
+            animation: bars 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes bars {
+            from {
+                opacity: 0.45;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ---------------- SECTIONS ---------------- */
+
+        section {
+            padding: 120px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .section-heading {
+            max-width: 650px;
+            margin-bottom: 55px;
+        }
+
+        .section-label {
+            color: #a78bfa;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(32px, 5vw, 55px);
+            line-height: 1.05;
+            letter-spacing: -2.5px;
+            margin-bottom: 18px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 17px;
+        }
+
+        /* ---------------- FEATURES ---------------- */
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .feature {
+            padding: 30px;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.035),
+                    rgba(255,255,255,0.01)
+                );
+
+            transition: 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139,92,246,0.35);
+            background: rgba(139,92,246,0.04);
+        }
+
+        .feature-number {
+            font-size: 11px;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .feature h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* ---------------- CODE ---------------- */
+
+        .code-section {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .code-copy h2 {
+            font-size: clamp(34px, 5vw, 55px);
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+        }
+
+        .code-copy p {
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .code-window {
+            background: #080809;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+        }
+
+        .code-header {
+            height: 42px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            font-size: 11px;
+            color: #666;
+        }
+
+        pre {
+            padding: 25px;
+            overflow-x: auto;
+            font-family:
+                "SFMono-Regular",
+                Consolas,
+                "Liberation Mono",
+                monospace;
+
+            font-size: 12px;
+            line-height: 1.8;
+            color: #c8c8cf;
+        }
+
+        .keyword {
+            color: #c084fc;
+        }
+
+        .string {
+            color: #67e8f9;
+        }
+
+        .function {
+            color: #f9a8d4;
+        }
+
+        .comment {
+            color: #555;
+        }
+
+        /* ---------------- STEPS ---------------- */
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .step {
+            padding: 28px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .step-number {
+            font-size: 13px;
+            color: #a78bfa;
+            margin-bottom: 35px;
+        }
+
+        .step h3 {
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* ---------------- OPEN SOURCE ---------------- */
+
+        .opensource {
+            text-align: center;
+            padding: 120px 20px;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(139,92,246,0.12),
+                    transparent 55%
+                );
+        }
+
+        .opensource h2 {
+            font-size: clamp(36px, 6vw, 64px);
+            letter-spacing: -3px;
+            margin-bottom: 18px;
+        }
+
+        .opensource p {
+            max-width: 600px;
+            margin: auto;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .opensource .hero-buttons {
+            margin-top: 28px;
+        }
+
+        /* ---------------- FOOTER ---------------- */
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* ---------------- RESPONSIVE ---------------- */
+
+        @media (max-width: 800px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            h1 {
+                letter-spacing: -3px;
+            }
+
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .workflow {
+                grid-template-columns: 1fr;
+            }
+
+            .features,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .code-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .product-window {
+                margin-top: 55px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav>
+    <div class="container nav-inner">
+
+        <a href="#" class="logo">
+            <span class="logo-mark">✦</span>
+            <span>AI Data Tool</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#workflow">How it works</a>
+            <a href="#developers">Developers</a>
+            <a href="#open-source">Open source</a>
+        </div>
+
+        <a
+            class="nav-cta"
+            href="https://github.com/Nehildiwan/ai-data-tool"
+            target="_blank"
+        >
+            GitHub ↗
+        </a>
+
+    </div>
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<main>
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                <span class="pulse"></span>
+                Open-source AI data infrastructure
+            </div>
+
+            <h1>
+                Turn raw data into
+                <span class="gradient-text">
+                    intelligence.
+                </span>
+            </h1>
+
+            <p class="hero-description">
+                AI Data Tool gives developers a simpler way to
+                connect data, apply AI, automate workflows,
+                and turn complex information into actionable
+                intelligence.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a
+                    href="https://github.com/Nehildiwan/ai-data-tool"
+                    target="_blank"
+                    class="btn btn-primary"
+                >
+                    View on GitHub ↗
+                </a>
+
+                <a
+                    href="#developers"
+                    class="btn btn-secondary"
+                >
+                    Explore the platform
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT PREVIEW -->
+
+        <div class="product-window">
+
+            <div class="window-top">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+
+                <span class="window-title">
+                    AI Data Tool / Workspace
+                </span>
+            </div>
+
+            <div class="dashboard">
+
+                <aside class="sidebar">
+
+                    <div class="side-label">
+                        Workspace
+                    </div>
+
+                    <div class="side-item active">
+                        Overview
+                    </div>
+
+                    <div class="side-item">
+                        Data sources
+                    </div>
+
+                    <div class="side-item">
+                        AI workflows
+                    </div>
+
+                    <div class="side-item">
+                        Models
+                    </div>
+
+                    <div class="side-item">
+                        API
+                    </div>
+
+                    <div class="side-item">
+                        Logs
+                    </div>
+
+                </aside>
+
+
+                <div class="dashboard-main">
+
+                    <div class="dashboard-header">
+
+                        <h3>
+                            Intelligence pipeline
+                        </h3>
+
+                        <span class="status">
+                            ● Processing
+                        </span>
+
+                    </div>
+
+
+                    <div class="workflow">
+
+                        <div class="workflow-card">
+
+                            <div class="workflow-icon">
+                                ↓
+                            </div>
+
+                            <h4>
+                                Data ingestion
+                            </h4>
+
+                            <p>
+                                Connect structured and
+                                unstructured sources.
+                            </p>
+
+                        </div>
+
+
+                        <div class="workflow-card">
+
+                            <div class="workflow-icon">
+                                AI
+                            </div>
+
+                            <h4>
+                                Intelligence layer
+                            </h4>
+
+                            <p>
+                                Transform information with
+                                AI-powered processing.
+                            </p>
+
+                        </div>
+
+
+                        <div class="workflow-card">
+
+                            <div class="workflow-icon">
+                                ↗
+                            </div>
+
+                            <h4>
+                                Action
+                            </h4>
+
+                            <p>
+                                Send insights into your
+                                existing workflow.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="data-bar">
+
+                        <div class="bar-header">
+
+                            <span>
+                                Data processing
+                            </span>
+
+                            <span>
+                                94.8%
+                            </span>
+
+                        </div>
+
+                        <div class="bars">
+
+                            <span class="bar" style="height:35%"></span>
+                            <span class="bar" style="height:50%"></span>
+                            <span class="bar" style="height:40%"></span>
+                            <span class="bar" style="height:70%"></span>
+                            <span class="bar" style="height:58%"></span>
+                            <span class="bar" style="height:85%"></span>
+                            <span class="bar" style="height:65%"></span>
+                            <span class="bar" style="height:95%"></span>
+                            <span class="bar" style="height:76%"></span>
+                            <span class="bar" style="height:100%"></span>
+                            <span class="bar" style="height:83%"></span>
+                            <span class="bar" style="height:92%"></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section id="features">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="section-label">
+                Built for data
+            </div>
+
+            <h2>
+                Data shouldn't just sit there.
+                Make it work.
+            </h2>
+
+            <p>
+                AI Data Tool is designed around the idea that
+                data processing, intelligence and automation
+                should exist in one simple developer workflow.
+            </p>
+
+        </div>
+
+
+        <div class="features">
+
+            <div class="feature">
+
+                <div class="feature-number">
+                    01
+                </div>
+
+                <h3>
+                    Connect anything
+                </h3>
+
+                <p>
+                    Bring data from APIs, databases,
+                    files and other sources into a
+                    unified processing workflow.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-number">
+                    02
+                </div>
+
+                <h3>
+                    Add intelligence
+                </h3>
+
+                <p>
+                    Use AI models to classify,
+                    summarize, transform and
+                    reason over your data.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-number">
+                    03
+                </div>
+
+                <h3>
+                    Automate actions
+                </h3>
+
+                <p>
+                    Turn AI-generated insights into
+                    useful actions instead of leaving
+                    them trapped inside a dashboard.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-number">
+                    04
+                </div>
+
+                <h3>
+                    Developer first
+                </h3>
+
+                <p>
+                    Simple APIs, predictable workflows
+                    and an architecture developers
+                    can actually understand.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-number">
+                    05
+                </div>
+
+                <h3>
+                    Open source
+                </h3>
+
+                <p>
+                    Inspect the code, experiment with
+                    the architecture and contribute
+                    to the project.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-number">
+                    06
+                </div>
+
+                <h3>
+                    Built to evolve
+                </h3>
+
+                <p>
+                    A flexible foundation for building
+                    new AI-powered data workflows
+                    as your needs change.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= WORKFLOW ================= -->
+
+<section id="workflow">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="section-label">
+                The workflow
+            </div>
+
+            <h2>
+                From raw information
+                to useful decisions.
+            </h2>
+
+        </div>
+
+
+        <div class="steps">
+
+            <div class="step">
+
+                <div class="step-number">
+                    STEP 01
+                </div>
+
+                <h3>
+                    Bring your data
+                </h3>
+
+                <p>
+                    Connect the sources your application
+                    already relies on. Keep the data where
+                    it belongs while bringing it into your
+                    workflow.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    STEP 02
+                </div>
+
+                <h3>
+                    Let AI understand it
+                </h3>
+
+                <p>
+                    Apply models and processing logic to
+                    transform unstructured information
+                    into structured, useful outputs.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    STEP 03
+                </div>
+
+                <h3>
+                    Put the result to work
+                </h3>
+
+                <p>
+                    Push insights into applications,
+                    workflows and systems where they
+                    can actually create value.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= DEVELOPERS ================= -->
+
+<section id="developers">
+
+    <div class="container">
+
+        <div class="code-section">
+
+            <div class="code-copy">
+
+                <div class="section-label">
+                    For developers
+                </div>
+
+                <h2>
+                    Intelligence without
+                    unnecessary complexity.
+                </h2>
+
+                <p>
+                    Build AI-powered data workflows using
+                    familiar developer patterns. Keep your
+                    application logic readable, modular and
+                    easy to extend.
+                </p>
+
+            </div>
+
+
+            <div class="code-window">
+
+                <div class="code-header">
+                    example.py
+                </div>
+
+<pre><span class="keyword">from</span> ai_data_tool <span class="keyword">import</span> Client
+
+client = Client()
+
+<span class="comment"># Load your data</span>
+dataset = client.data.load(
+    source=<span class="string">"customer_data"</span>
+)
+
+<span class="comment"># Ask AI to understand it</span>
+result = client.ai.<span class="function">process</span>(
+    dataset,
+    task=<span class="string">"identify_high_value_customers"</span>
+)
+
+<span class="comment"># Use the result</span>
+client.workflow.<span class="function">trigger</span>(
+    result
+)</pre>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= OPEN SOURCE ================= -->
+
+<section id="open-source">
+
+    <div class="container">
+
+        <div class="opensource">
+
+            <div class="section-label">
+                Open source
+            </div>
+
+            <h2>
+                Built in the open.
+            </h2>
+
+            <p>
+                AI Data Tool is an open-source project.
+                Explore the code, experiment with the architecture,
+                report issues, suggest improvements or contribute
+                to the project.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a
+                    href="https://github.com/Nehildiwan/ai-data-tool"
+                    target="_blank"
+                    class="btn btn-primary"
+                >
+                    Explore the repository ↗
+                </a>
+
+                <a
+                    href="https://github.com/Nehildiwan/ai-data-tool/issues"
+                    target="_blank"
+                    class="btn btn-secondary"
+                >
+                    View issues
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="container footer-inner">
+
+        <div>
+            © 2026 AI Data Tool
+        </div>
+
+        <div class="footer-links">
+
+            <a
+                href="https://github.com/Nehildiwan/ai-data-tool"
+                target="_blank"
+            >
+                GitHub
+            </a>
+
+            <a href="#features">
+                Features
+            </a>
+
+            <a href="#developers">
+                Developers
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
